@@ -109,7 +109,10 @@ class BNFW_Engine {
 
         $user_id = $user->ID;
 
+        $setting[ 'subject' ] = apply_filters( 'bnfw_welcome_subject', $setting[ 'subject' ], $user );
         $subject = $this->handle_shortcodes( $setting[ 'subject' ], $setting[ 'notification' ], $user_id );
+
+        $setting[ 'message' ] = apply_filters( 'bnfw_welcome_message', $setting[ 'message' ], $user );
         $message = $this->handle_shortcodes( $setting[ 'message' ], $setting[ 'notification' ], $user_id );
 
         $subject = str_replace( '[password]', $password_url, $subject );
